@@ -1,0 +1,45 @@
+server:
+    port: 8080
+
+servlet:
+  container:
+    maxThreads: 513
+
+spring:
+    datasource:
+        #name: library
+        #jndi-name: jdbc/Library
+        url: jdbc:mysql://localhost:3306/library # +++
+        username: root # +++
+        password: root # +++
+        hikari:
+          maximum-pool-size: 2
+        driver-class-name: com.mysql.jdbc.Driver
+
+    jpa:
+        database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+        hibernate:            # +++
+            ddl-auto: none  # +++
+        properties:
+            hibernate:
+                current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+                dialect: org.hibernate.dialect.MySQL5Dialect
+                format_sql: true
+                enable_lazy_load_no_trans: true
+        show-sql: true
+        open-in-view: false
+
+
+logging:
+    file: c:\temp\app.log
+    pattern:
+      file: "%d{HH:mm:ss} %-5p [%c] - %m%n"
+
+    level:
+        ROOT: error
+        org.springframework: warn
+        javax.faces: warn
+        org.omnifaces: warn
+        org.springframework.security: warn
+        org.hibernate: warn
+        org.hibernate.type.descriptor.sql: warn
